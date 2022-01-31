@@ -1,0 +1,10 @@
+@import './reset.css';
+
+.App {
+  height: 100%;
+}
+.contain{
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+}

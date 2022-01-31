@@ -1,15 +1,10 @@
-import { Route, Link } from 'react-router-dom';
-import React from "react";
-
-import styles from './css/App.module.css';
-import Dic_card from './Dic_card';
-import Dic_nav from './Dic_nav'; 
-import Dic_addPage from './Dic_addPage';
+// 리액트 패키지를 불러옵니다.
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styles from './css/Dic_addPage.module.css';
 
 
-
-
-function App() {
+const Dic_addPage = (props) => {
 
   const [word, setWord] = React.useState([ 'apple', 'banana', 'orange' ])
   const [mean, setMean] = React.useState([ '사과', '바나나', '오렌지' ])
@@ -22,25 +17,16 @@ function App() {
 
   const addCard =()=> {
     // console.log('input에 있는 값은 찍힘. ref가져옴.')
-    setWord([...word, input_word.current.value]);
-    setMean([...mean, input_mean.current.value]);
-    setEx([...ex, input_ex.current.value]);
-
+    // setWord([...word, input_word.current.value]);
+    // setMean([...mean, input_mean.current.value]);
+    // setEx([...ex, input_ex.current.value]);
+    console.log(input_word)
+    console.log(input_mean)
+    console.log(input_ex)
   }
-
+  
   return (
-    
-    <div className={styles.App}>
-      <div className ={styles.contain}>
-        <Dic_nav/>
-        <Route exact path='/'>
-          <Dic_card word={word} mean={mean} ex={ex}/> 
-        </Route>
-        <Route exact path='/addpage'>
-          <Dic_addPage/>
-        </Route>
-
-
+    <>
         <div className={styles.detail_box}>
           <h2 className={styles.detail_title}>새로운 단어를 저장해봐요!</h2>
           <div className={styles.card_input}>
@@ -63,13 +49,8 @@ function App() {
             </button>
           </div>
         </div>
+    </>
+  )
+};
 
-                
-      </div>
-    </div>
-  );
-}
-
-
-
-export default App;
+export default Dic_addPage;

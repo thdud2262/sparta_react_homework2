@@ -1,0 +1,32 @@
+@import './reset.css';
+
+.card_box{
+  width: 100%;
+  border: 3px solid pink;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+}
+
+.card{
+  width: 32%;
+  height: 200px;
+  border: 3px solid pink;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card p {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.card p:last-child{
+  margin-bottom: 0;
+}
