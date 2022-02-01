@@ -1,16 +1,13 @@
 @import './reset.css';
-
 .card_box{
   width: 100%;
-  border: 3px solid pink;
   padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   justify-content:space-between;
 }
-
-.card{
+.card_list{
   width: 32%;
   height: 200px;
   border: 3px solid pink;
@@ -18,6 +15,8 @@
   margin-bottom: 15px;
   padding: 20px;
   box-sizing: border-box;
+  display: flex;
+  justify-content:space-between;
 }
 
 .card p {
@@ -27,6 +26,18 @@
   margin-bottom: 20px;
   font-size: 20px;
 }
+
 .card p:last-child{
   margin-bottom: 0;
+}
+.btn_box button{ 
+  background-color: pink;
+  border: pink;
+  padding: 3px 10px;
+  box-sizing: border-box;
+  color: white;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
 }
