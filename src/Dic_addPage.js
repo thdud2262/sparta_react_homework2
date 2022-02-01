@@ -1,54 +1,49 @@
 // 리액트 패키지를 불러옵니다.
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useRef } from "react";
+import { Link} from 'react-router-dom';
+import { useDispatch } from 'react-redux'; 
+import { useHistory } from 'react-router-dom';
+
+import { createDic } from './redux/modules/dic';
 import styles from './css/Dic_addPage.module.css';
 
 
+
 const Dic_addPage = (props) => {
-
-  const [word, setWord] = React.useState([ 'apple', 'banana', 'orange' ])
-  const [mean, setMean] = React.useState([ '사과', '바나나', '오렌지' ])
-  const [ex, setEx] = React.useState([ '사과굳', '바나나굳', '오렌지굳' ])
-
-  const input_word = React.useRef(null);
-  const input_mean = React.useRef(null);
-  const input_ex = React.useRef(null);
-
+  const history = useHistory();
+  const inputRef = useRef([]);
+  const dispatch = useDispatch();
 
   const addCard =()=> {
-    // console.log('input에 있는 값은 찍힘. ref가져옴.')
-    // setWord([...word, input_word.current.value]);
-    // setMean([...mean, input_mean.current.value]);
-    // setEx([...ex, input_ex.current.value]);
-    console.log(input_word)
-    console.log(input_mean)
-    console.log(input_ex)
+    const eng = inputRef.current[0].value;
+    const kor = inputRef.current[1].value;
+    const ex = inputRef.current[2].value;
+    const ref_data = { eng:eng, kor:kor, ex:ex };
+    // console.log(ref_data)
+    dispatch(createDic(ref_data));
+    history.goBack();
   }
-  
+
   return (
     <>
-        <div className={styles.detail_box}>
-          <h2 className={styles.detail_title}>새로운 단어를 저장해봐요!</h2>
-          <div className={styles.card_input}>
-            <p>단어 : 
-              <input type='text' className={styles.word} ref={input_word}/>
-            </p>
-            <p>뜻 : 
-              <input type='text' className={styles.word_mean} ref={input_mean}/>
-            </p>
-            <p>예문 : 
-              <input type='text' className={styles.word_ex} ref={input_ex} />
-            </p>
-          </div>
-          <div className={styles.btn_box}>
-            <button className={styles.btn} onClick={addCard}>
-              저장하기
-            </button>
-            <button className={styles.btn}>
-              <Link to='/'>돌아가기</Link>
-            </button>
-          </div>
+      <div className={styles.detail_box}>
+        <h2 className={styles.detail_title}>새로운 단어를 저장해봐요!</h2>
+        <div className={styles.card_input}>
+          <p>단어 : <input type='text' ref={el=> inputRef.current[0]=el }/></p>
+          <p>의미 : <input type='text' ref={el=> inputRef.current[1]=el }/></p>
+          <p>예문 : <input type='text' ref={el=> inputRef.current[2]=el }/></p>
         </div>
+        <div className={styles.btn_box}>
+          <button className={styles.btn} 
+            onClick={addCard}>
+            저장하기
+          </button>
+          <button className={styles.btn}>
+            <Link to='/'>돌아가기</Link>
+          </button>
+        </div>
+      </div>
     </>
   )
 };
