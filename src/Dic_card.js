@@ -1,40 +1,41 @@
 // 리액트 패키지를 불러옵니다.
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { deleteDic } from './redux/modules/dic';
 import styles from './css/Dic_card.module.css';
 
-
-const Dic_card = ({word, mean, ex }) => {
-  
-  const [count, setState] = React.useState(3);
-  const card_count = Array.from({length:count}, (v,i) => i );
-
-  const words = word;
-
-  console.log()
+const Dic_card = (props) => {
+  const words = useSelector((state) => state.dic.list)
+  const Dispatch = useDispatch()
+  // console.log(words)
 
   return (
     <>
       <div className={styles.card_box}>
-        {words.map(( word , idx ) => {
-              return (
-              <div className={styles.card} key={idx}>
-                <p>단어 : 
-                  <sapn className={styles.word}>{word}</sapn>
-                </p>
-                <p>뜻 : 
-                  <sapn className={styles.word_mean}>{mean[idx]}</sapn>
-                </p>
-                <p>예문 : 
-                  <sapn className={styles.word_ex}>{ex[idx]}</sapn>
-                </p>
+        {words.map((word, idx) => {
+          const dic_idx = {idx}
+          // console.log(dic_idx, word)
+          return (
+              <div key={idx} className={styles.card_list}> 
+                <div className={styles.card}>
+                  <p>단어 : <sapn>{word.eng}</sapn></p>
+                  <p>의미 : <sapn>{word.kor}</sapn></p>
+                  <p>예문 : <sapn>{word.ex}</sapn></p>
+                </div>
+                <div className={styles.btn_box}>
+                  <button onClick={() => {
+                    Dispatch(deleteDic(dic_idx))
+                    console.log('삭제')
+                  }}>삭제</button>
+                </div>
               </div>
-              );
-            })}
+          )
+        })}
       </div>
     </>
   )
 };
 
-
-
 export default Dic_card;
+
