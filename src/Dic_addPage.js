@@ -5,6 +5,7 @@ import { Link} from 'react-router-dom';
 import { useDispatch } from 'react-redux'; 
 import { useHistory } from 'react-router-dom';
 
+import { createDicFB } from './redux/modules/dic';
 import { createDic } from './redux/modules/dic';
 import styles from './css/Dic_addPage.module.css';
 
@@ -19,9 +20,11 @@ const Dic_addPage = (props) => {
     const eng = inputRef.current[0].value;
     const kor = inputRef.current[1].value;
     const ex = inputRef.current[2].value;
+
     const ref_data = { eng:eng, kor:kor, ex:ex };
-    // console.log(ref_data)
-    dispatch(createDic(ref_data));
+    // dispatch(createDic(ref_data));
+    dispatch(createDicFB(ref_data))
+
     history.goBack();
   }
 
