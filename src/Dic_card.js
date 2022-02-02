@@ -25,10 +25,13 @@ const Dic_card = (props) => {
               </div>
               <div className={styles.btn_box}>
                 <button onClick={() => {
-                  dispatch(deleteDicFB(dic_idx))
+                  dispatch(deleteDicFB(word.id))
                   //여기는 해당 index를 지워주지만 firestore에서는 id로!
                   // dispatch(deleteDicFB(dic_idx.idx))
                 }}>삭제</button>
+                <button>
+                  수정
+                </button>
               </div>
             </div>
           )

@@ -24,9 +24,9 @@ export function loadDic(dic_list) {
 export function createDic(dic) {
   return { type: CREATE, dic };
 }
-export function deleteDic(dic_index) {
+export function deleteDic(dic_idx) {
   // console.log("지울 인덱스", dic_index)
-  return { type: DELETE, dic_index };
+  return { type: DELETE, dic_idx };
 }
 
 
@@ -38,9 +38,9 @@ export const loadDicFB = () => {
 
     let dic_list = []
     dic_data.forEach((D)=> {
-      dic_list.push({...D.data()});
+      dic_list.push({...D.data(), id:D.id});
     })
-    // console.log(dic_list)
+    console.log(dic_list)
     dispatch(loadDic(dic_list))
   }
 }
@@ -51,7 +51,7 @@ export const createDicFB = (dic_data) => {
     // console.log((await getDoc(docRef)).data())
     // const _dic = ( getDoc(docRef))
     const dic = { id: docRef.id , ...dic_data}
-    console.log(dic)
+    // console.log(dic)
 
     dispatch(createDic(dic));
   }
@@ -65,10 +65,18 @@ export const deleteDicFB = (dic_id) => {
     // }
     const docRef = doc(db,"dic", dic_id );
     await deleteDoc(docRef)
-    console.log()
-    dispatch(deleteDoc(docRef));
+
+    const _word_list = getState().dic.list;
+    const word_index = _word_list.findIndex((b) => {
+      return b.id === dic_id;
+    });
+    dispatch(deleteDic(word_index));
   }
 }
+// 삭젭튼 .......... ㅋㅋ
+// 스테이트 확인,,아 
+// 미들에ㅜ에ㅓ 
+
 
 
 // 4_Reducer
@@ -83,11 +91,13 @@ export default function reducer(state = initialState, action = {}) {
       return { list : new_card_list };
     }
     case "dic/DELETE" : {
-
       const new_card_list = state.list.filter(( D, idx) =>{
         // console.log(parseInt(action.dic_index.idx) !== idx, 
-        // action.dic_index.idx , idx) // 삭제할 부분 확인 찍어봄
-        return parseInt(action.dic_index.idx) !== idx 
+        // action.dic_index.idx , idx) // 삭제할 부분 확인 찍어봄\
+    
+        console.log(action.dic_idx)
+        return parseInt(action.dic_idx) !== idx 
+  
       })
       return { list : new_card_list };
     }
