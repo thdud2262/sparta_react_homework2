@@ -1,16 +1,16 @@
 너무 힘들게 과제를 끝냈씁니다.
 도와주신분들 감사합니다! 늦은박자대로 착실히 공부하겠씀니다!! 
 
+<hr>
 
+<h2>STATE관리</h2>
+<h2>기본CRUD작업</h2>
+<h2>Route(페이지이동)</h2>
+<h2>Redux(전역상태관리)</h2>
+<h2>middleware : redux-thunk(미들웨어) </h2>
+<h2>firebase (서버리스 firebase사용)</h2>
 
-STATE관리
-기본CRUD작업
-Route(페이지이동)
-Redux(전역상태관리)
-middleware : redux-thunk(미들웨어) 
-firebase (서버리스 firebase사용)
-
-
+<hr>
 
 ![image](https://user-images.githubusercontent.com/85012454/153977089-a8ba2e7c-5dc1-420b-a567-0715ec657a21.png)
 메인화면 단어추가, 수정, 삭제버튼 기능 활성화 됨
